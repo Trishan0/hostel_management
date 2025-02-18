@@ -19,6 +19,8 @@ class HostelRoom(models.Model):
         "hostel_room_amenities_rel", "room_id", "amenitiy_id",
         string="Amenities", domain="[('active', '=', True)]",
         help="Select hostel room amenities")
+    student_per_room = fields.Integer("Student Per Room",required=True, help="Studented allocated per room")
+    availability = fields.Float(compute="_compute_check_availability", string="Availability", help="Room availability in hostel", store=True)
     
     _sql_constraints = [
         ("room_no_unique", "unique(room_no)", "Room number must be unique!")
@@ -30,3 +32,9 @@ class HostelRoom(models.Model):
         """
         if self.rent_amount < 0:
             raise ValidationError(_("Rent Amount Per Month should not be a negative value!"))
+        
+    @api.depends('student_per_room', 'student_ids')
+    def _compute_check_availability(self):
+        """Method to check room availability"""
+        for rec in self:
+            rec.availability = rec.student_per_room - len(rec.student_ids.ids)
