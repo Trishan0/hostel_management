@@ -26,6 +26,7 @@ class HostelStudent(models.Model):
         help="Date on which student discharge")
     duration = fields.Integer("Duration", compute="_compute_check_duration", inverse="_inverse_duration",
                                help="Enter duration of living")
+    hostel_id = fields.Many2one("hostel.hostel", related="room_id.hostel_id")
     
     
     @api.depends("admission_date", "discharge_date")
