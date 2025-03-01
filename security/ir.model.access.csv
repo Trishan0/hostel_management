@@ -6,3 +6,4 @@ access_hostel_student_manager,hostel_student_manager,model_hostel_student,,1,1,1
 access_hostel_amenities_manager,hostel_amenities_manager,model_hostel_amenities,,1,1,1,1
 access_hostel_hostel_manager,hostel_hostel_manager,model_hostel_hostel,,1,1,1,1
 access_hostel_category_manager,hostel_category_manager,model_hostel_category,,1,1,1,1
+access_hospital_doctor_manager,hospital_doctor_manager,model_hospital_doctor,,1,1,1,1
